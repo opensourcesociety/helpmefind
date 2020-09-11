@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import AppBar from 'sections/AppBar';
-import Menu from 'sections/Menu';
+// import Menu from 'sections/Menu';
 
 function Navigation() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuOpen = () => {
-    setIsMenuOpen(true);
-  };
+  // const handleMenuOpen = () => {
+  //   setIsMenuOpen(true);
+  // };
 
-  const handleMenuClose = () => {
-    setIsMenuOpen(false);
-  };
+  // const handleMenuClose = () => {
+  //   setIsMenuOpen(false);
+  // };
 
   return (
     <>
-      <Menu isOpen={isMenuOpen} onClose={handleMenuClose} onOpen={handleMenuOpen} />
-      <AppBar isMenuOpen={isMenuOpen} onMenuOpen={handleMenuOpen} />
+      {/* <Menu isOpen={isMenuOpen} onClose={handleMenuClose} onOpen={handleMenuOpen} /> */}
+      <AppBar />
     </>
   );
 }

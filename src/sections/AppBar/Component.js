@@ -12,7 +12,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {
   FaBrush as BrushIcon,
   FaRedo as RedoIcon,
-  FaBars as MenuIcon,
   FaGithub as GithubIcon,
 } from 'react-icons/fa';
 
@@ -32,7 +31,7 @@ const Divider = withStyles({
   },
 })(props => <DividerMU flexItem orientation="vertical" {...props} />);
 
-function AppBar_({ onMenuOpen }) {
+function AppBar_() {
   const classes = useStyles();
   const [, themeActions] = useTheme();
   const [swState, swActions] = useSW();
@@ -54,13 +53,6 @@ function AppBar_({ onMenuOpen }) {
     >
       <Toolbar className={classes.toolbar}>
         <Box display="flex" className={classes.main}>
-          <IconButton
-            edge="start"
-            aria-label="open menu"
-            onClick={onMenuOpen}
-          >
-            <MenuIcon />
-          </IconButton>
           <Link to="/">
             <Button aria-label="go to home" className={classes.title}>
               {title}

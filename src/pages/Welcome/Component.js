@@ -43,8 +43,8 @@ function Welcome() {
   return (
     <>
       <Meta
-        title="Welcome"
-        description="Welcome to React PWA"
+        title="Օգնեք գտնեմ"
+        description="Օգնեք գտնեմ"
       />
       <Container maxWidth="md" className={classes.root}>
         <Fb row justifyBetween className={classes.titleRow}>
