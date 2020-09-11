@@ -35,7 +35,7 @@ function Welcome() {
     setIsDialogOpen(true);
   }, [setActivePost, setIsDialogOpen]);
 
-  const onDialogClose = useCallback(post => {
+  const onDialogClose = useCallback(() => {
     setActivePost(null);
     setIsDialogOpen(false);
   }, [setActivePost, setIsDialogOpen]);

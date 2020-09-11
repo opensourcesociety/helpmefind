@@ -24,6 +24,6 @@ function DialogContent(props) {
       {postData.title}
      </div>
   );
-};
+}
 
 export default DialogContent;
