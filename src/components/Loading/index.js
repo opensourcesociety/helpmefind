@@ -1,3 +1,3 @@
-import Component from './Component';
+import Loading from './Component';
 
-export default Component;
+export default Loading;

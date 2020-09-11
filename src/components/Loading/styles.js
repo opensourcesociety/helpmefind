@@ -1,20 +1,25 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  preloader: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    left: 0,
-    top: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    'background-color': theme.palette.background.default,
+export default makeStyles(theme => ({
+  loaderWrapper: {
+    position: 'relative',
   },
-  open: {
-    background: 'none',
+  loaderWrapperFullWidth: {
+    width: '100%',
+  },
+  loaderOverlay: {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 100,
+    position: 'absolute',
+    backgroundColor: fade(theme.palette.background.default, 0.5),
+  },
+  loaderContent: {
+    height: '100%',
+  },
+  isFullScreen: {
+    position: 'fixed',
   },
 }));
-
-export default useStyles;

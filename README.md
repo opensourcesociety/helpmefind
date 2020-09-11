@@ -70,7 +70,7 @@ function SomeCoolComponent() {
   const { state, actions } = useStore();
 
   // let's see what is the current theme mode
-  console.log(state.theme.mode);
+  // console.log(state.theme.mode);
 
   // and if you want to change the theme, call appropriate action
   function toggleTheme() {
