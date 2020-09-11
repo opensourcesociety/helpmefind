@@ -1,8 +1,8 @@
 import { isMobile } from 'utils';
 
 /* set your data here */
-const email = 'super-email-of-the-auther@gmail.com';
-const domain = 'your-project-domain.com'
+const email = 'info@findmehelp.am';
+const domain = 'findmehelp.am'
 /* ***************** */
 
 const repository = 'https://github.com/opensourcesociety/helpmefind';
@@ -69,7 +69,7 @@ const cancelationMessage = 'operation is manually canceled';
 
 const dateFormat = 'MMMM DD, YYYY';
 
-const title = 'React PWA';
+const title = 'Find Me Help';
 
 const themePair = ['dark', 'light'];
 

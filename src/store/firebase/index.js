@@ -15,19 +15,21 @@ const postsState = atom({
 function usePosts() {
   const [posts, setPosts] = useRecoilState(postsState);
 
-  const get = useCallback(() => {
-    postsRemote.get().then(querySnapshot => {
-      const posts = [];
-      // there is no .map on `querySnapshot`
-      // and you are not able to get the all data as an array (yet)
-      // so, that's why this mess is here
-      querySnapshot.forEach(doc => posts.push({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setPosts(posts);
-    });
+  const updatePosts = useCallback(querySnapshot => {
+    const posts = [];
+    // there is no .map on `querySnapshot`
+    // and you are not able to get the all data as an array (yet)
+    // so, that's why this mess is here
+    querySnapshot.forEach(doc => posts.push({
+      id: doc.id,
+      ...doc.data()
+    }));
+    setPosts(posts);
   }, [setPosts]);
+
+  useEffect(() => postsRemote.onSnapshot(updatePosts), [updatePosts]);
+
+  const get = useCallback(() => postsRemote.get(), []);
 
   useEffect(() => {
     // get the list of posts as soon as possible
