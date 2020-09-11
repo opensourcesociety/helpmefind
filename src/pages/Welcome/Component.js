@@ -8,34 +8,22 @@ import Meta from 'components/Meta';
 import Table from 'components/Table';
 import Dialog from 'components/Dialog';
 
-import useStyles from './styles';
+import { usePosts } from 'store/firebase';
 
-const rows = [
-  {
-    id: 1,
-    name: 'Test',
-  },
-  {
-    id: 2,
-    name: 'Test 2',
-  },
-];
+import useStyles from './styles';
 
 const columns = [
   {
-    label: 'ID',
-    name: 'id',
+    label: 'title',
+    name: 'title',
   },
-  {
-    label: 'Label',
-    name: 'name',
-  }
 ];
 
 function Welcome() {
   const matchSmallScreen = useMediaQuery('(max-width: 600px)');
   const classes = useStyles({ isSmallScreen: matchSmallScreen });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [posts] = usePosts();
 
   return (
     <>
@@ -48,7 +36,7 @@ function Welcome() {
           Help me find
         </Typography>
         <Table
-          data={rows}
+          data={posts}
           columns={columns}
           onRowClick={() => setIsDialogOpen(true)}
         />
