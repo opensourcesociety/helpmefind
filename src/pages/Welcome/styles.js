@@ -13,6 +13,9 @@ const useStyles = makeStyles(() => ({
   title: {
     'font-weight': 100,
   },
+  titleRow: {
+    margin: '1rem 0',
+  },
 }));
 
 export default useStyles;

@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
+import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+import Fb from 'components/Fb';
 import Meta from 'components/Meta';
 import Table from 'components/Table';
 import Dialog from 'components/Dialog';
 
 import { usePosts } from 'store/firebase';
+
+import DialogContent from './DialogContent';
 
 import useStyles from './styles';
 
@@ -23,7 +27,18 @@ function Welcome() {
   const matchSmallScreen = useMediaQuery('(max-width: 600px)');
   const classes = useStyles({ isSmallScreen: matchSmallScreen });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [activePost, setActivePost] = useState(null);
   const [posts] = usePosts();
+
+  const onPostSelect = useCallback(post => {
+    setActivePost(post);
+    setIsDialogOpen(true);
+  }, [setActivePost, setIsDialogOpen]);
+
+  const onDialogClose = useCallback(post => {
+    setActivePost(null);
+    setIsDialogOpen(false);
+  }, [setActivePost, setIsDialogOpen]);
 
   return (
     <>
@@ -32,20 +47,35 @@ function Welcome() {
         description="Welcome to React PWA"
       />
       <Container maxWidth="md" className={classes.root}>
-        <Typography variant="h4">
-          Help me find
-        </Typography>
+        <Fb row justifyBetween className={classes.titleRow}>
+          <Typography variant="h4">
+            Օգնեք գտնեմ
+          </Typography>
+
+          <Button 
+            variant="outlined"
+            onClick={() => setIsDialogOpen(true)}
+          >
+            Ավելացնել Հայտարարություն
+          </Button>
+        </Fb>
+       
         <Table
           data={posts}
           columns={columns}
-          onRowClick={() => setIsDialogOpen(true)}
+          onRowClick={onPostSelect}
         />
 
         <Dialog
           open={isDialogOpen}
-          onClose={() => setIsDialogOpen(false)}
+          title={activePost && activePost.title}
+          onClose={onDialogClose}
         >
-          The Dialog
+          {activePost && (
+            <DialogContent
+              post={activePost}
+            />
+          )}
         </Dialog>
       </Container>
     </>

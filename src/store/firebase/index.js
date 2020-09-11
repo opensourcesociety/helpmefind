@@ -44,4 +44,9 @@ function usePosts() {
   return [posts, { get, add }];
 }
 
-export { usePosts };
+const postTypes = {
+  lost: 'lost',
+  found: 'found',
+};
+
+export { usePosts, postTypes };

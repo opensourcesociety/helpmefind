@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import Paper from '@material-ui/core/Paper';
@@ -8,7 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableContainer from '@material-ui/core/TableContainer';
-import TablePagination from '@material-ui/core/TablePagination';
+// import TablePagination from '@material-ui/core/TablePagination';
 
 import useStyles from './styles';
 
@@ -18,22 +18,23 @@ function Table(props) {
   const {
     data,
     columns,
+    hoverRow,
     onRowClick,
     stickyHeader,
   } = props;
-  
+
   const classes = useStyles();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(paginationSteps[2]);
+  const [page] = useState(0);
+  const [rowsPerPage] = useState(paginationSteps[2]);
 
-  const handleChangePage = useCallback((event, newPage) => {
-    setPage(newPage);
-  }, [setPage]);
+  // const handleChangePage = useCallback((event, newPage) => {
+  //   setPage(newPage);
+  // }, [setPage]);
 
-  const handleChangeRowsPerPage = useCallback(event => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  }, [setRowsPerPage, setPage]);
+  // const handleChangeRowsPerPage = useCallback(event => {
+  //   setRowsPerPage(+event.target.value);
+  //   setPage(0);
+  // }, [setRowsPerPage, setPage]);
 
   const rows = useMemo(() => {
     return data.map((row, index) => {
@@ -77,6 +78,7 @@ function Table(props) {
                 return (
                   <TableRow
                     tabIndex={-1}
+                    hover={hoverRow}
                     key={row.id || index}
                     onClick={() => onRowClick(row, index)}
                   >
@@ -86,7 +88,7 @@ function Table(props) {
                         return (
                           <TableCell
                             key={index}
-                            align="center"
+                            align={columns[index].align || 'left'}
                           >
                             {rowData}
                           </TableCell>
@@ -98,7 +100,7 @@ function Table(props) {
           </TableBody>
         </MUITable>
       </TableContainer>
-      <TablePagination
+      {/* <TablePagination
         page={page}
         component="div"
         count={rows.length}
@@ -106,16 +108,18 @@ function Table(props) {
         onChangePage={handleChangePage}
         rowsPerPageOptions={paginationSteps}
         onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+      /> */}
     </Paper>
   );
 }
 
 Table.defaultProps = {
+  hoverRow: true,
   stickyHeader: true,
 };
 
 Table.propTypes = {
+  hoverRow: PropTypes.bool,
   stickyHeader: PropTypes.bool,
 };
 

@@ -12,7 +12,7 @@ export default makeStyles(theme => ({
     textAlign: 'center',
   },
   'color-white': {
-    color: theme.palette.background.main,
+    color: theme.palette.background.default,
   },
   multiRow: {
     width: '100%',
@@ -31,7 +31,7 @@ export default makeStyles(theme => ({
       textAlign: 'right',
       position: 'absolute',
       height: ({ rowHeight }) => `${rowHeight}rem`,
-      background: ({ bgColor = theme.palette.background.main }) => bgColor !== false ?
+      background: ({ bgColor = theme.palette.background.default }) => bgColor !== false ?
         `linear-gradient(to right, ${fade(bgColor, 0)}, ${fade(bgColor, 1)} 50%)` : 'transparent',
     },
   },

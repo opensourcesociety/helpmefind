@@ -5,6 +5,7 @@ export default makeStyles(() => ({
     width: '100%',
   },
   container: {
-    maxHeight: 440,
+    overflow: 'auto',
+    height: '80vh',
   },
 }));

@@ -1,13 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const headerHeight = 42;
+const headerHeight = 50;
+
 export default makeStyles(theme => ({
   dialogTileWrapper: {
     minHeight: 40,
     position: 'relative',
     height: headerHeight,
     padding: '0.5rem 1rem',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
     borderBottom: `1px solid ${theme.palette.background.default}`,
     [theme.breakpoints.down('xs')]: {
       height: headerHeight,
