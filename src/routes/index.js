@@ -7,6 +7,16 @@ const routes = [
     path: '/',
   },
   {
+    exact: true,
+    component: asyncComponentLoader(() => import('pages/Create')),
+    path: '/posts/new',
+  },
+  {
+    exact: true,
+    component: asyncComponentLoader(() => import('pages/Post')),
+    path: '/posts/:id',
+  },
+  {
     component: asyncComponentLoader(() => import('components/NotFound')),
   },
 ];
