@@ -8,7 +8,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableContainer from '@material-ui/core/TableContainer';
-// import TablePagination from '@material-ui/core/TablePagination';
 
 import useStyles from './styles';
 
@@ -27,18 +26,9 @@ function Table(props) {
   const [page] = useState(0);
   const [rowsPerPage] = useState(paginationSteps[2]);
 
-  // const handleChangePage = useCallback((event, newPage) => {
-  //   setPage(newPage);
-  // }, [setPage]);
-
-  // const handleChangeRowsPerPage = useCallback(event => {
-  //   setRowsPerPage(+event.target.value);
-  //   setPage(0);
-  // }, [setRowsPerPage, setPage]);
-
   const rows = useMemo(() => {
     return data.map((row, index) => {
-      const rowData = {};
+      const rowData = { id: row.id };
       columns.forEach(column => {
         rowData[column.name] = column.getValue
           ? column.getValue(row, index)
@@ -74,13 +64,13 @@ function Table(props) {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
+              .map(({ id, ...row }, index) => {
                 return (
                   <TableRow
                     tabIndex={-1}
                     hover={hoverRow}
-                    key={row.id || index}
-                    onClick={() => onRowClick(row, index)}
+                    key={id || index}
+                    onClick={() => onRowClick({ id, ...row }, index)}
                   >
                     {Object
                       .values(row)
@@ -100,15 +90,6 @@ function Table(props) {
           </TableBody>
         </MUITable>
       </TableContainer>
-      {/* <TablePagination
-        page={page}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        onChangePage={handleChangePage}
-        rowsPerPageOptions={paginationSteps}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      /> */}
     </Paper>
   );
 }
