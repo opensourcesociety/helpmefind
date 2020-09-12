@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -8,11 +8,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Fb from 'components/Fb';
 import Meta from 'components/Meta';
 import Table from 'components/Table';
-import Dialog from 'components/Dialog';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 
 import { usePosts } from 'store/firebase';
-
-import DialogContent from './DialogContent';
 
 import useStyles from './styles';
 
@@ -26,25 +24,18 @@ const columns = [
 function Welcome() {
   const matchSmallScreen = useMediaQuery('(max-width: 600px)');
   const classes = useStyles({ isSmallScreen: matchSmallScreen });
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [activePost, setActivePost] = useState(null);
   const [posts] = usePosts();
+  const history = useHistory();
 
-  const onPostSelect = useCallback(post => {
-    setActivePost(post);
-    setIsDialogOpen(true);
-  }, [setActivePost, setIsDialogOpen]);
-
-  const onDialogClose = useCallback(() => {
-    setActivePost(null);
-    setIsDialogOpen(false);
-  }, [setActivePost, setIsDialogOpen]);
+  function navigateToPost({ id }) {
+    history.push(`posts/${id}`);
+  }
 
   return (
     <>
       <Meta
-        title="Օգնեք գտնեմ"
-        description="Օգնեք գտնեմ"
+        title="Օգնեք գտնել"
+        description="Օգնեք գտնել"
       />
       <Container maxWidth="md" className={classes.root}>
         <Fb row justifyBetween className={classes.titleRow}>
@@ -54,7 +45,8 @@ function Welcome() {
 
           <Button 
             variant="outlined"
-            onClick={() => setIsDialogOpen(true)}
+            component={RouterLink}
+            to="/posts/new"
           >
             Ավելացնել Հայտարարություն
           </Button>
@@ -63,20 +55,8 @@ function Welcome() {
         <Table
           data={posts}
           columns={columns}
-          onRowClick={onPostSelect}
+          onRowClick={navigateToPost}
         />
-
-        <Dialog
-          open={isDialogOpen}
-          title={activePost && activePost.title}
-          onClose={onDialogClose}
-        >
-          {activePost && (
-            <DialogContent
-              post={activePost}
-            />
-          )}
-        </Dialog>
       </Container>
     </>
   );
