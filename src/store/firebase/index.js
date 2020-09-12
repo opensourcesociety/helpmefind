@@ -36,12 +36,8 @@ function usePosts() {
     get();
   }, [get]);
 
-  const add = useCallback(post => {
-    // TODO: add validation
-    postsRemote.add(post).then(docRef => {
-      setPosts(posts => [...posts, { id: docRef.id, ...post }]);
-    });
-  }, [setPosts]);
+  // TODO: add validation
+  const add = useCallback(post => postsRemote.add(post), []);
 
   return [posts, { get, add }];
 }
