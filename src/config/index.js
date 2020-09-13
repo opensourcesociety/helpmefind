@@ -90,6 +90,33 @@ const loader = {
   minimumLoading: 700, // but if it appears, it will stay for at least 700 milliseconds
 };
 
+const documentTypes = [
+  {
+    type: 'passport',
+    fields: [
+      {
+        documentID: 'string',
+        details: 'string',
+      },
+    ],
+  },
+  {
+    type: 'driving-license',
+    fields: [
+      {
+        documentID: 'string',
+        details: 'string',
+      },
+    ],
+  },
+];
+
+const publishSteps = [
+  'Ընտրեք փաստաթղթի տեսակը',
+  'Լրացրեք անհրաժեշտ դաշտերը',
+  'Հրապարակել',
+];
+
 export {
   messages,
   cancelationMessage,
@@ -103,4 +130,6 @@ export {
   themePair,
   notifications,
   themes,
+  documentTypes,
+  publishSteps,
 };
