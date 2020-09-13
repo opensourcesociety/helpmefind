@@ -2,7 +2,10 @@ import React from 'react';
 
 import GridList from '@material-ui/core/GridList';
 
-import { documentTypes } from 'config';
+import DrivingLicense from './DrivingLicense';
+import Passport from './Passport';
+import Other from './Other';
+
 import useStyles from './styles';
 
 function Documents() {
@@ -10,11 +13,9 @@ function Documents() {
 
   return (
     <GridList cellHeight={100} className={classes.root}>
-      {
-        documentTypes.map(doc => (
-          <div key={doc.type}>{doc.type}</div>
-        ))
-      }
+      <Passport />
+      <DrivingLicense />
+      <Other />
     </GridList>
   );
 }
