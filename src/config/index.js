@@ -109,11 +109,22 @@ const documentTypes = [
       },
     ],
   },
+  {
+    type: 'other',
+    fields: [
+      {
+        documentID: 'string',
+        details: 'string',
+      },
+    ],
+  },
 ];
 
 const publishSteps = [
+  'Գտել եք թե՞ փնտրում եք',
   'Ընտրեք փաստաթղթի տեսակը',
   'Լրացրեք անհրաժեշտ դաշտերը',
+  'Հետադարձ կապ',
   'Հրապարակել',
 ];
 
