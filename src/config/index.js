@@ -90,8 +90,8 @@ const loader = {
   minimumLoading: 700, // but if it appears, it will stay for at least 700 milliseconds
 };
 
-const documentTypes = [
-  {
+const documentTypes = {
+  passport: {
     type: 'passport',
     fields: [
       {
@@ -100,7 +100,7 @@ const documentTypes = [
       },
     ],
   },
-  {
+  'driving-license': {
     type: 'driving-license',
     fields: [
       {
@@ -108,8 +108,57 @@ const documentTypes = [
         details: 'string',
       },
     ],
+    dimensions: {
+      real: {
+        width: 8.6,
+        height: 5.4,
+        padding: 0.3,
+        header: {
+          width: '100%',
+          height: 0.7,
+          'background-color': '#343D59',
+          divider: {
+            width: '100%',
+            height: 0.1,
+            alignment: 'center',
+          },
+          country: {
+            height: '100%',
+            width: 1.5,
+            left: 0.44,
+            'font-size': 0.4411764705882353,
+          },
+          languages: {
+            width: 5.8,
+            height: '100%',
+            padding: {
+              right: 0.15,
+              top: 0.07,
+              bottom: 0.05,
+            },
+            upper: {
+              'font-size': 0.16470588235294117,
+              'first-child': {
+                'margin-right': 0.3,
+              },
+            },
+            lower: {
+              'font-size': 0.14411764705882354,
+              'first-child': {
+                'margin-right': 0.4,
+              },
+            },
+          },
+        },
+        footer: {
+          width: '100%',
+          height: 0.1,
+        },
+      },
+    },
+    scale: 34,
   },
-  {
+  other: {
     type: 'other',
     fields: [
       {
@@ -118,7 +167,7 @@ const documentTypes = [
       },
     ],
   },
-];
+};
 
 const publishSteps = [
   'Գտել եք թե՞ փնտրում եք',
