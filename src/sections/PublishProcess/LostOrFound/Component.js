@@ -2,14 +2,14 @@ import React from 'react';
 
 import useStyles from './styles';
 
-function Content() {
+function LostOrFound() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      Something
+      LostOrFound
     </div>
   );
 }
 
-export default Content;
+export default LostOrFound;
