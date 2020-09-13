@@ -8,7 +8,7 @@ const routes = [
   },
   {
     exact: true,
-    component: asyncComponentLoader(() => import('pages/Create')),
+    component: asyncComponentLoader(() => import('pages/Publish')),
     path: '/posts/new',
   },
   {
