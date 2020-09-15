@@ -72,6 +72,12 @@ const useStyles = makeStyles(() => ({
     height: dimensions.footer.height * scale,
     'background-color': '#3A4161',
   },
+  image: {
+    '& > svg': {
+      width: '90%',
+      height: '100%',
+    }
+  },
 }));
 
 export default useStyles;
