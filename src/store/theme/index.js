@@ -4,21 +4,21 @@ import * as effects from 'store/effects';
 
 import { themePair } from 'config';
 
-const themeModeState = atom({
-  key: 'themeModeState',
+const themeState = atom({
+  key: 'themeState',
   default: localStorage.getItem('theme-mode') || 'dark',
 });
 
 function useTheme() {
-  const [themeMode, setThemeMode] = useRecoilState(themeModeState);
+  const [theme, setTheme] = useRecoilState(themeState);
 
   function toggle() {
-    const mode = themeMode === themePair[0] ? themePair[1] : themePair[0];
-    setThemeMode(mode);
+    const mode = theme === themePair[0] ? themePair[1] : themePair[0];
+    setTheme(mode);
     effects.theme.lsSave(mode);
   }
 
-  return [themeMode, { toggle }];
+  return [theme, { toggle }];
 }
 
 export default useTheme;
